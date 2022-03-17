@@ -1,4 +1,6 @@
 import nodemailer from 'nodemailer';
+import {} from 'dotenv/config'
+
 
 
 export const sendValidationEmail = async (to, url) => {
@@ -10,8 +12,8 @@ export const sendValidationEmail = async (to, url) => {
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass, // generated ethereal password
+      user: process.env.REACT_APP_EMAIL, // generated ethereal user
+      pass: process.env.REACT_APP_EMAIL_PASS, // generated ethereal password
     },
   });
 
