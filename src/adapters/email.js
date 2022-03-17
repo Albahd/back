@@ -1,19 +1,17 @@
 import nodemailer from 'nodemailer';
-import {} from 'dotenv/config'
 
 
 
 export const sendValidationEmail = async (to, url) => {
     // Only needed if you don't have a real mail account for testing
-  const testAccount = await nodemailer.createTestAccount();
+ 
   // create reusable transporter object using the default SMTP transport
+ 
   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // true for 465, false for other ports
+    service: 'gmail',
     auth: {
       user: process.env.REACT_APP_EMAIL, // generated ethereal user
-      pass: process.env.REACT_APP_EMAIL_PASS, // generated ethereal password
+      pass: process.env.REACT_APP_PASS, // generated ethereal password
     },
   });
 
@@ -328,4 +326,5 @@ export const sendValidationEmail = async (to, url) => {
 
   console.log("Message sent: %s", info.messageId);
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+
 }
