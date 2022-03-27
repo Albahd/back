@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import { ObjectId } from 'mongodb';
 
 
 const URI = 'mongodb+srv://albahd:70584909w@cluster0.klj5x.mongodb.net/project_final?retryWrites=true&w=majority';
@@ -81,7 +82,7 @@ export const retrieveUserInfoByEmail = async (email) => {
         const db = client.db(DATABASE_NAME);
         const users = db.collection(COLLECTION_NAME);
         const query = { email };
-        const options = { projection: { _id: 0, password: 0, status: 0 } }
+        const options = { projection: {password: 0, status: 0 } }
         return await users.findOne(query, options);
     } catch (err) {
         console.error(err);
@@ -91,4 +92,50 @@ export const retrieveUserInfoByEmail = async (email) => {
 }
 
 
+export const deleteUserInfoByEmail = async (email) => {
+    try {
+        await client.connect();
+        const db = client.db(DATABASE_NAME);
+        const users = db.collection(COLLECTION_NAME);
+        const query = { email };
+        const options = { projection: { _id: 0, password: 0, status: 0 } }
+        return await users.deleteOne(query, options);
+    } catch (err) {
+        console.error(err);
+    } finally {
+       return"delete"
+    }
+}
 
+
+
+export const patchUserEmail = async (id,email) => {
+    try{
+        await client.connect(); 
+        const db = client.db(DATABASE_NAME); 
+        const userCol = db.collection(COLLECTION_NAME);
+
+        const userEmail = await userCol.updateOne({"_id":ObjectId(id)}, {$set:email}); 
+        return userEmail ?? undefined;
+    }catch(err){
+        console.error('Retrieve users error: ', err);
+    }finally {
+        client.close(); 
+    }
+};
+
+
+export const patchUserName = async (id,name) => {
+    try{
+        await client.connect(); 
+        const db = client.db(DATABASE_NAME); 
+        const userCol = db.collection(COLLECTION_NAME);
+
+        const userName = await userCol.updateOne({"_id":ObjectId(id)}, {$set:name}); 
+        return userName ?? undefined;
+    }catch(err){
+        console.error('Retrieve users error: ', err);
+    }finally {
+        client.close(); 
+    }
+};

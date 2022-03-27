@@ -17,38 +17,11 @@ export const sendValidationEmail = async (to, url) => {
 
   // send mail with defined transport object
   const info = await transporter.sendMail({
-    from: '"Alegría de ViBeer 👻" <alegriadevibeer@gmail.com>', // sender address
+    from: '"Alegría de ViBeer" <alegriadevibeer@gmail.com>', // sender address
     to, // list of receivers
     subject: "Valida tu email ✔", // Subject line
-    html: `Skip to content
-    Search or jump to…
-    Pull requests
-    Issues
-    Marketplace
-    Explore
-     
-    @agonsant 
-    sendgrid
-    /
-    email-templates
-    Public
-    Code
-    Issues
-    18
-    Pull requests
-    1
-    Actions
-    Projects
-    Wiki
-    Security
-    Insights
-    email-templates/paste-templates/email-confirmation.html
-    @two24studios
-    two24studios Add Paste transactional templates
-    Latest commit c64ac93 on 24 Oct 2017
-     History
-     1 contributor
-    272 lines (244 sloc)  8.97 KB
+    html: `
+  
        
     <!DOCTYPE html>
     <html>
