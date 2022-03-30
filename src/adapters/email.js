@@ -14,6 +14,8 @@ export const sendValidationEmail = async (to, url) => {
       pass: process.env.REACT_APP_PASS, // generated ethereal password
     },
   });
+  console.log(url)
+  
 
   // send mail with defined transport object
   const info = await transporter.sendMail({
