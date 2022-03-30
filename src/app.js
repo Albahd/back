@@ -1,3 +1,4 @@
+import {} from "dotenv/config"
 import express from 'express';
 import cors from 'cors';
 import authRouter from './auth/auth.router.js';
@@ -12,9 +13,9 @@ import { validateUser } from './users/users.model.js';
 
 dotenv.config()
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 // console.log(process.env.REACT_APP_EMAIL,process.env.REACT_APP_PASS)
-
+console.log(process.env.DB_PW)
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))

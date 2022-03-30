@@ -1,5 +1,11 @@
 import { MongoClient } from 'mongodb'
-const uri ='mongodb+srv://albahd:70584909w@cluster0.klj5x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+
+
+
+
+
+
+const uri =`mongodb+srv://albahd:${process.env.DB_PW}@cluster0.klj5x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 
 
 const client = new MongoClient(uri);

@@ -2,7 +2,8 @@ import { MongoClient } from 'mongodb';
 import { ObjectId } from 'mongodb';
 
 
-const URI = 'mongodb+srv://albahd:70584909w@cluster0.klj5x.mongodb.net/project_final?retryWrites=true&w=majority';
+
+const URI = `mongodb+srv://albahd:${process.env.DB_PW}@cluster0.klj5x.mongodb.net/project_final?retryWrites=true&w=majority`;
 const client = new MongoClient(URI);
 const DATABASE_NAME = 'project_final';
 const COLLECTION_NAME = 'users';
