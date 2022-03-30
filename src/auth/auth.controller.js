@@ -22,9 +22,10 @@ export const registerCtrl = async (req, res) => {
             // paso 3
             const token = generateValidationToken();
             await createValidationToken(token, req.body.email);
+            console.log(req.body.email)
             // paso 4
             //ojo que el host es el de nuestra aplicación de react
-            sendValidationEmail(req.body.email, `http://localhost:3000/validate?token=${token}`)
+            sendValidationEmail(req.body.email, `https://alegriadevibeer.netlify.app/validate?token=${token}`)
             res.sendStatus(201);
         } else {
             // mando un 409(conflict) porque ya existe el usuario en BBDD
